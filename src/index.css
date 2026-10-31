@@ -1,0 +1,103 @@
+/* @import url() FONT IMPORTS MUST ALWAYS BE AT THE VERY TOP OF THIS FILE, ABOVE THE TAILWIND IMPORTS — DO NOT DELETE THIS COMMENT */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+/* CRITICAL: THE FOLLOWING TAILWIND IMPORTS MUST NEVER BE DELETED OR REORDERED — DO NOT DELETE THIS COMMENT */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* END TAILWIND IMPORTS — ALL OTHER CSS MUST GO BELOW THIS LINE */
+
+/* Dark — near-black, deep navy, warm white, silver */
+:root {
+  --c-bg: 7 8 12;
+  --c-navy: 11 16 32;
+  --c-ink: 243 238 230;
+  --c-muted: 156 156 164;
+  --c-silver: 198 203 212;
+  --c-glow: 214 186 140;
+  --grain-opacity: 0.07;
+  color-scheme: dark;
+}
+/* Light — warm ivory, graphite, soft neutrals */
+:root[data-theme='light'] {
+  --c-bg: 246 242 235;
+  --c-navy: 235 229 218;
+  --c-ink: 30 31 34;
+  --c-muted: 100 97 91;
+  --c-silver: 112 117 126;
+  --c-glow: 150 106 52;
+  --grain-opacity: 0.045;
+  color-scheme: light;
+}
+html {
+  scroll-behavior: smooth;
+  background: rgb(var(--c-bg));
+}
+body {
+  margin: 0;
+  background: rgb(var(--c-bg));
+  color: rgb(var(--c-ink));
+  font-family: 'Manrope', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+::selection {
+  background: rgb(var(--c-ink));
+  color: rgb(var(--c-bg));
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+/* Smooth theme switching (applied briefly while toggling) */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition:
+    background-color 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    color 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    fill 300ms cubic-bezier(0.23, 1, 0.32, 1),
+    stroke 300ms cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+@layer components {
+  .glass {
+    background: rgb(var(--c-bg) / 0.55);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+    border: 1px solid rgb(var(--c-ink) / 0.1);
+    box-shadow:
+      0 18px 50px -18px rgb(0 0 0 / 0.45),
+      inset 0 1px 0 rgb(255 255 255 / 0.06);
+  }
+  .glass-dark {
+    background: rgb(255 255 255 / 0.08);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgb(255 255 255 / 0.18);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+  }
+}
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px rgb(var(--c-ink) / 0.35);
+}
+.text-outline-inverse {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(var(--c-bg) / 0.55);
+}
+/* Light mode art direction for the hero still */
+:root[data-theme='light'] .hero-still {
+  filter: grayscale(1) sepia(0.18) brightness(1.08) contrast(0.92);
+}
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 70;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
