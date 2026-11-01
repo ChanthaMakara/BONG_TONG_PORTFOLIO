@@ -14,6 +14,7 @@ import { FadeIn } from '../motion/FadeIn';
 import { RevealText } from '../motion/RevealText';
 import { SectionLabel } from '../ui/SectionLabel';
 import { EASE_OUT } from '../../utils/motion';
+import { BehindTheScenes } from './BehindTheScenes';
 
 /* ---------- Reusable glass card with mouse-follow spotlight + optional video ---------- */
 function GlassCard({
@@ -202,6 +203,7 @@ export function Experience() {
           ))}
         </ol>
       </div>
+      <BehindTheScenes />
     </section>
   );
 }

@@ -26,6 +26,7 @@ export function SeriesCard({ group, isActive, onClick }: Props) {
     <motion.button
       type="button"
       onClick={onClick}
+      aria-label={`Open ${group.title}`}
       whileHover={{ y: -8 }}
       whileTap={{ scale: 0.98 }}
       className={`group relative aspect-[3/4] w-full overflow-hidden rounded-[28px] border text-left transition-all duration-500 ${
@@ -48,48 +49,16 @@ export function SeriesCard({ group, isActive, onClick }: Props) {
         />
       </AnimatePresence>
 
-      {/* Soft gradient */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      {/* Very light gradient at the bottom so the dots stay readable */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-black/40 to-transparent" />
 
-      {/* Small progress dots (optional but nice) */}
+      {/* Small photo number */}
       {group.photos.length > 1 && (
-        <div className="absolute bottom-24 left-1/2 flex -translate-x-1/2 gap-1.5">
-          {group.photos.map((_, i) => (
-            <div
-              key={i}
-              className={`h-1 rounded-full transition-all duration-300 ${
-                i === current ? 'w-4 bg-amber-400' : 'w-1.5 bg-white/40'
-              }`}
-            />
-          ))}
-        </div>
+        <span className="pointer-events-none absolute left-4 top-4 rounded-full border border-white/25 bg-black/35 px-2.5 py-1 text-[10px] tabular-nums text-white backdrop-blur-xl">
+          {String(current + 1).padStart(2, '0')} / {String(group.photos.length).padStart(2, '0')}
+        </span>
       )}
 
-      {/* Glass info at bottom */}
-      <div className="absolute inset-x-0 bottom-0 p-5">
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-4 backdrop-blur-xl">
-          <div className="flex items-center justify-between gap-3">
-            <div>
-              <h3 className="font-display text-xl font-medium text-white md:text-2xl">
-                {group.title}
-              </h3>
-              <p className="mt-1 text-sm text-white/70">
-                {group.photos.length} photos
-              </p>
-            </div>
-
-            <div
-              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-lg transition ${
-                isActive
-                  ? 'border-amber-400 bg-amber-400/20 text-amber-300'
-                  : 'border-white/30 bg-white/10 text-white'
-              }`}
-            >
-              {isActive ? '−' : '+'}
-            </div>
-          </div>
-        </div>
-      </div>
     </motion.button>
   );
 }
