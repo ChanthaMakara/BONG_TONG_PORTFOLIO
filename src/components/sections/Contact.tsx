@@ -44,7 +44,7 @@ const socials = [
   },
   {
     name: 'Facebook',
-    handle: 'Piseth Maratong',
+    handle: 'Maa Tong',
     href: 'https://www.facebook.com/share/1DViiyxBS5/?mibextid=wwXIfr',
     icon: <FacebookIcon />,
     tint: 'hover:border-blue-500/50 hover:text-blue-500',

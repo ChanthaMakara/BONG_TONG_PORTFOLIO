@@ -5,7 +5,9 @@ export const degree = {
   start: '2020',
   end: '2024',
   title: 'Bachelor Degree of Film Studies',
-  school: 'PSE Film School'
+  school: 'PSE Film School',
+  image: '/images/projects/education.JPG',
+
 };
 
 export const training: TimelineEntry[] = [

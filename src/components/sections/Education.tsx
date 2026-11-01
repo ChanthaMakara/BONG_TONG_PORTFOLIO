@@ -15,15 +15,17 @@ import { RevealText } from '../motion/RevealText';
 import { SectionLabel } from '../ui/SectionLabel';
 import { EASE_OUT } from '../../utils/motion';
 
-/* ---------- Reusable glass card with mouse-follow spotlight ---------- */
+/* ---------- Reusable glass card with mouse-follow spotlight + optional image ---------- */
 function GlassCard({
   children,
   className = '',
   delay = 0,
+  image,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  image?: string;
 }) {
   const reduce = useReducedMotion();
   const mx = useMotionValue(0);
@@ -50,6 +52,26 @@ function GlassCard({
         aria-hidden
         className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-ink/25 to-transparent"
       />
+
+      {/* background image */}
+      {image && (
+        <>
+          <img
+            aria-hidden
+            src={image}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-40 transition-[opacity,transform] duration-700 group-hover:scale-105 group-hover:opacity-60"
+          />
+          {/* keeps the text readable */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-bg/30"
+          />
+        </>
+      )}
+
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -119,7 +141,7 @@ export function Education() {
               Education and training
             </h2>
 
-            <GlassCard className="mt-8 p-6 md:p-10">
+            <GlassCard className="mt-8 p-6 md:p-10" image={degree.image}>
               <div
                 className="font-display font-medium leading-[0.85] tracking-[-0.06em]"
                 aria-hidden
