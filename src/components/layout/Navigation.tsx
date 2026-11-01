@@ -48,18 +48,22 @@ export function Navigation() {
           className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-ink/30 to-transparent"
         />
 
+        {/* brand: logo image + name */}
         <a
           href="#top"
+          aria-label="Maratong, back to top"
           className="group flex items-center gap-3 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-silver"
         >
-          <span className="relative flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border border-ink/20 bg-ink/5 font-display text-[13px] font-semibold tracking-tight backdrop-blur-md">
-            <span
-              aria-hidden
-              className="absolute inset-0 bg-gradient-to-br from-amber-500/30 to-teal-500/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-            />
-            <span className="relative">PM</span>
+          <span className="relative flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-ink/20 bg-ink/5 ring-2 ring-transparent transition-[box-shadow] duration-500 group-hover:ring-amber-500/50">
+          <img
+            src="/images/Logo.PNG"
+            alt=""
+            width={44}
+            height={44}
+            className="h-full w-full origin-[50%_10%] scale-[1.5] object-cover object-top transition-transform duration-500 group-hover:scale-[1.65]"
+          />
           </span>
-          <span className="hidden font-display text-sm font-medium tracking-[0.2em] sm:block">MARATONG</span>
+          <span className="font-display text-sm font-medium tracking-[0.2em]">MARATONG</span>
         </a>
 
         <ul className="hidden items-center rounded-full border border-ink/10 bg-ink/[0.04] p-1 lg:flex">
