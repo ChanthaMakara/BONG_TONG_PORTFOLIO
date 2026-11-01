@@ -15,6 +15,7 @@ export type ExperienceItem = {
   title: string;
   detail?: string;
   role: string;
+  video?: string;
 };
 
 export type ExperienceGroup = {

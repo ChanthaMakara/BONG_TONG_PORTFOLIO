@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   motion,
+  useInView,
   useMotionTemplate,
   useMotionValue,
   useReducedMotion,
@@ -14,19 +15,35 @@ import { RevealText } from '../motion/RevealText';
 import { SectionLabel } from '../ui/SectionLabel';
 import { EASE_OUT } from '../../utils/motion';
 
-/* ---------- Reusable glass card with mouse-follow spotlight ---------- */
+/* ---------- Reusable glass card with mouse-follow spotlight + optional video ---------- */
 function GlassCard({
   children,
   className = '',
   delay = 0,
+  video,
 }: {
   children: React.ReactNode;
   className?: string;
   delay?: number;
+  video?: string;
 }) {
   const reduce = useReducedMotion();
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
+
+  const cardRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const inView = useInView(cardRef, { amount: 0.3 });
+
+  // play the background video only while the card is on screen
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    if (inView) v.play().catch(() => {});
+    else v.pause();
+  }, [inView]);
+
   const spotlight = useMotionTemplate`radial-gradient(380px circle at ${mx}px ${my}px, rgba(245,158,11,0.18), transparent 65%)`;
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -37,6 +54,7 @@ function GlassCard({
 
   return (
     <motion.div
+      ref={cardRef}
       initial={reduce ? false : { opacity: 0, y: 40, filter: 'blur(10px)' }}
       whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
       viewport={{ once: true, amount: 0.2 }}
@@ -49,6 +67,28 @@ function GlassCard({
         aria-hidden
         className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-ink/25 to-transparent"
       />
+
+      {/* background video */}
+      {video && !reduce && (
+        <>
+          <video
+            ref={videoRef}
+            aria-hidden
+            src={video}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-30 transition-opacity duration-500 group-hover:opacity-50"
+          />
+          {/* keeps text readable */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-gradient-to-r from-bg/80 via-bg/40 to-transparent"
+          />
+        </>
+      )}
+
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -134,7 +174,7 @@ export function Experience() {
                   const isDoP = item.role === 'Director of Photography';
                   return (
                     <li key={item.title}>
-                      <GlassCard delay={i * 0.06} className="p-6 md:p-8">
+                      <GlassCard delay={i * 0.06} className="p-6 md:p-8" video={item.video}>
                         <h3 className="font-display text-2xl font-medium leading-tight tracking-[-0.02em] md:text-[2rem]">
                           {item.title}
                         </h3>

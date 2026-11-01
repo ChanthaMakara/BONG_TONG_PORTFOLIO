@@ -90,8 +90,10 @@ export function ProjectVideoModal({ project, onClose }: Props) {
             />
           )}
 
+          {/* On small screens the card gets extra top padding (pt-14) so the close
+              button sits in its own strip above the video instead of covering it. */}
           <motion.div
-            className="relative w-full max-w-5xl overflow-hidden rounded-[28px] border border-white/15 bg-white/[0.06] p-2 text-white shadow-[0_50px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur-2xl md:rounded-[36px] md:p-3"
+            className="relative w-full max-w-5xl overflow-hidden rounded-[28px] border border-white/15 bg-white/[0.06] p-2 pt-14 text-white shadow-[0_50px_120px_-40px_rgba(0,0,0,0.9)] backdrop-blur-2xl md:rounded-[36px] md:p-3"
             initial={{ scale: 0.92, y: 24, opacity: 0, filter: 'blur(10px)' }}
             animate={{ scale: 1, y: 0, opacity: 1, filter: 'blur(0px)' }}
             exit={{ scale: 0.96, y: 12, opacity: 0 }}
@@ -104,12 +106,12 @@ export function ProjectVideoModal({ project, onClose }: Props) {
               className="pointer-events-none absolute inset-x-12 top-0 z-20 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent"
             />
 
-            {/* close button */}
+            {/* close button: top strip on mobile, over the video corner on desktop */}
             <button
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-5 top-5 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-xl transition-[transform,background-color,border-color] duration-200 hover:scale-105 hover:border-amber-400/60 hover:bg-black/45 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:right-6 md:top-6"
+              className="absolute right-3 top-2.5 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-black/30 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] backdrop-blur-xl transition-[transform,background-color,border-color] duration-200 hover:scale-105 hover:border-amber-400/60 hover:bg-black/45 active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:right-6 md:top-6"
             >
               <XIcon size={18} />
             </button>

@@ -15,7 +15,6 @@ export const projects: Project[] = [
   description: 'Still from Chamnong Sne Preah Ngneang.',
   image: img('pres_ngeang.JPG'),
   video: vid('pres-ngeang-trailer.MP4'), 
-  images: Array.from({ length: 4 }, (_, i) => img(`pres-ngeang-image-${i + 1}.PNG`)),       // add more pictures here when you have them
 },
 {
   id: 'neang-phoung',
@@ -25,7 +24,6 @@ export const projects: Project[] = [
   description: 'Still from Neang Phoung.',
   image: img('neangphoung.JPG'),
   video: vid('neang-phoung-trailer.MP4'),
-  images: Array.from({ length: 4 }, (_, i) => img(`neang-phoung-image-${i + 1}.PNG`)),       // add more pictures here when you have them
 },
 {
   id: 'komherng',
@@ -42,7 +40,6 @@ export const projects: Project[] = [
   description: 'Still from Kakei.',
   image: img('kakei.JPG'),
   video: vid('kakei-trailer.MP4'),
-  images: Array.from({ length: 4 }, (_, i) => img(`kakei-image-${i + 1}.PNG`)),       // add more pictures here when you have them
 },
 {
   id: 'dont-leave',
@@ -51,7 +48,6 @@ export const projects: Project[] = [
   description: 'Still from Don’t Leave.',
   image: img("don't_leave.JPG"),
   video: vid('dont-leave-trailer.MP4'),   // must match the file name in public/videos/projects
-  images: Array.from({ length: 4 }, (_, i) => img(`dont-leave-image-${i + 1}.PNG`)),       // add more pictures here when you have them
 },
 {
   id: 'dont-promise',
@@ -60,5 +56,4 @@ export const projects: Project[] = [
   description: 'Still from Don’t Promise.',
   image: img("don't promise.JPG"),
   video: vid('dont_promise_trailer.mp4'),   // must match the file name in public/videos/projects
-  images: Array.from({ length: 4 }, (_, i) => img(`promise-image-${i + 1}.PNG`)),       // add more pictures here when you have them
 }];

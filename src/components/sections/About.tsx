@@ -159,7 +159,7 @@ export function About() {
             {/* experience */}
             <GlassCard className="p-6 md:p-8" delay={0.05}>
               <p className="bg-gradient-to-br from-ink via-amber-500 to-orange-500 bg-clip-text font-display text-7xl font-medium leading-none tracking-[-0.05em] text-transparent md:text-8xl">
-                2
+                3
                 <span className="ml-2 text-3xl text-muted md:text-4xl [-webkit-text-fill-color:currentColor]">
                   yrs
                 </span>
